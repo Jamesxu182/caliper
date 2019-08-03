@@ -35,3 +35,11 @@ services:
         - ../config/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/msp/peerOrg1
         - ../config/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/msp/peerOrg2
         - ../config/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/:/etc/hyperledger/msp/peerOrg3
+    extra_hosts:
+        - "orderer.example.com:172.26.5.243"
+        - "peer0.org1.example.com:172.26.7.211"
+        - "ca.org1.example.com:172.26.7.211"
+        - "peer0.org2.example.com:172.26.1.238"
+        - "ca.org2.example.com:172.26.1.238"
+        - "peer0.org3.example.com:172.26.11.224"
+        - "ca.org3.example.com:172.26.11.224"
