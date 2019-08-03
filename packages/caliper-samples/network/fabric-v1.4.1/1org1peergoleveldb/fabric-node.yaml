@@ -23,11 +23,11 @@ caliper:
     end: echo End
 
 info:
-  Version: 1.4.0
-  Size: 2 Orgs with 1 Peer
+  Version: 1.4.1
+  Size: 1 Orgs with 1 Peer
   Orderer: Solo
-  Distribution: Single Host
-  StateDB: CouchDB
+  Distribution: Multiple Hosts
+  StateDB: GoLevelDB
 
 clients:
   client0.org1.example.com:
