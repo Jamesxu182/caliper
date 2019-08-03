@@ -32,7 +32,7 @@ services:
     extra_hosts:
         - "orderer.example.com:172.26.5.243"
         - "peer0.org1.example.com:172.26.7.211"
-        - "ca.org1.example.com172.26.7.211"
+        - "ca.org1.example.com:172.26.7.211"
         - "peer0.org3.example.com:172.26.11.224"
         - "ca.org3.example.com:172.26.11.224"
 
@@ -66,6 +66,6 @@ services:
     extra_hosts:
         - "orderer.example.com:172.26.5.243"
         - "peer0.org1.example.com:172.26.7.211"
-        - "ca.org1.example.com172.26.7.211"
+        - "ca.org1.example.com:172.26.7.211"
         - "peer0.org3.example.com:172.26.11.224"
         - "ca.org3.example.com:172.26.11.224"
