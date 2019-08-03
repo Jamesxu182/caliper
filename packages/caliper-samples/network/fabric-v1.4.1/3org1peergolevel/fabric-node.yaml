@@ -24,9 +24,9 @@ caliper:
 
 info:
   Version: 1.4.0
-  Size: 2 Orgs with 1 Peer
-  Orderer: Solo,
-  Distribution: Mutiple Host
+  Size: 3 Orgs with 1 Peers
+  Orderer: Solo
+  Distribution: Multiple Host
   StateDB: GoLevelDB
 
 clients:
@@ -54,6 +54,17 @@ clients:
       clientSignedCert:
         path: network/fabric-v1.4.1/config/crypto-config/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/signcerts/User1@org2.example.com-cert.pem
 
+  client0.org3.example.com:
+    client:
+      organization: Org3
+      credentialStore:
+        path: /tmp/hfc-kvs/org3
+        cryptoStore:
+          path: /tmp/hfc-cvs/org3
+      clientPrivateKey:
+        path: network/fabric-v1.4.1/config/crypto-config/peerOrganizations/org3.example.com/users/User1@org3.example.com/msp/keystore/key.pem
+      clientSignedCert:
+        path: network/fabric-v1.4.1/config/crypto-config/peerOrganizations/org3.example.com/users/User1@org3.example.com/msp/signcerts/User1@org3.example.com-cert.pem
 
 channels:
   mychannel:
@@ -61,7 +72,7 @@ channels:
     definition:
         capabilities: []
         consortium: 'SampleConsortium'
-        msps: ['Org1MSP', 'Org2MSP']
+        msps: ['Org1MSP', 'Org2MSP', 'Org3MSP']
         version: 0
     orderers:
     - orderer.example.com
@@ -69,6 +80,8 @@ channels:
       peer0.org1.example.com:
         eventSource: true
       peer0.org2.example.com:
+        eventSource: true
+      peer0.org3.example.com:
         eventSource: true
 
     chaincodes:
@@ -105,6 +118,17 @@ organizations:
     signedCert:
       path: network/fabric-v1.4.1/config/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/Admin@org2.example.com-cert.pem
 
+  Org3:
+    mspid: Org3MSP
+    peers:
+    - peer0.org3.example.com
+    certificateAuthorities:
+    - ca.org3.example.com
+    adminPrivateKey:
+      path: network/fabric-v1.4.1/config/crypto-config/peerOrganizations/org3.example.com/users/Admin@org3.example.com/msp/keystore/key.pem
+    signedCert:
+      path: network/fabric-v1.4.1/config/crypto-config/peerOrganizations/org3.example.com/users/Admin@org3.example.com/msp/signcerts/Admin@org3.example.com-cert.pem
+
 orderers:
   orderer.example.com:
     url: grpc://34.243.133.22:7050
@@ -113,7 +137,7 @@ orderers:
 
 peers:
   peer0.org1.example.com:
-    url: grpc://52.212.194.219::7051
+    url: grpc://52.212.194.219:7051
     grpcOptions:
       ssl-target-name-override: peer0.org1.example.com
       grpc.keepalive_time_ms: 600000
@@ -122,6 +146,12 @@ peers:
     url: grpc://52.17.144.207:8051
     grpcOptions:
       ssl-target-name-override: peer0.org2.example.com
+      grpc.keepalive_time_ms: 600000
+
+  peer0.org3.example.com:
+    url: grpc://18.202.58.220:9051
+    grpcOptions:
+      ssl-target-name-override: peer0.org3.example.com
       grpc.keepalive_time_ms: 600000
 
 certificateAuthorities:
@@ -135,6 +165,14 @@ certificateAuthorities:
 
   ca.org2.example.com:
     url: http://52.17.144.207:8054
+    httpOptions:
+      verify: false
+    registrar:
+    - enrollId: admin
+      enrollSecret: adminpw
+
+  ca.org3.example.com:
+    url: http://18.202.58.220:9054
     httpOptions:
       verify: false
     registrar:
