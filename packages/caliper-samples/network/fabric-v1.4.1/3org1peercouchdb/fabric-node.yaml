@@ -27,7 +27,7 @@ info:
   Size: 3 Orgs with 1 Peers
   Orderer: Solo
   Distribution: Multiple Host
-  StateDB: GoLevelDB
+  StateDB: CouchDB
 
 clients:
   client0.org1.example.com:
